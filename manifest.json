@@ -2,7 +2,7 @@
   "required_api_version": "2",
   "name": "Quick Answers (DDG + AI)",
   "description": "dd: DuckDuckGo instant answers. ai: free Groq AI answer on Enter.",
-  "developer_name": "you",
+  "developer_name": "I-Manz",
   "icon": "images/icon.png",
   "options": {
     "query_debounce": 0.4
