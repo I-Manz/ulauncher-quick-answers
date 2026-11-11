@@ -2,6 +2,7 @@ import json
 import textwrap
 import urllib.parse
 import urllib.request
+import urllib.error
 
 from ulauncher.api.client.Extension import Extension
 from ulauncher.api.client.EventListener import EventListener
@@ -84,8 +85,12 @@ def ask_groq(api_key, model, system_prompt, question):
             "User-Agent": USER_AGENT,
         },
     )
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        return json.load(resp)["choices"][0]["message"]["content"].strip()
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            return json.load(resp)["choices"][0]["message"]["content"].strip()
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode("utf-8", errors="replace")[:300]
+        raise RuntimeError("HTTP %s: %s" % (e.code, detail))
 
 
 class QuickAnswers(Extension):
