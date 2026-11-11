@@ -100,7 +100,9 @@ class KeywordQueryListener(EventListener):
         keyword = event.get_keyword()
         query = (event.get_argument() or "").strip()
         prefs = extension.preferences
-        is_ai = keyword == prefs.get("ai_kw")
+        ai_kw = (prefs.get("ai_kw") or "ai").strip()
+        first_word = (event.get_query() or "").strip().split(" ")[0]
+        is_ai = keyword in (ai_kw, "ai_kw") or first_word == ai_kw
 
         if not query:
             hint = "Type your question, then press Enter" if is_ai else "Type something to look up"
