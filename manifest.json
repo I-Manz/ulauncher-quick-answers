@@ -1,40 +1,53 @@
 {
   "required_api_version": "2",
-  "name": "DuckAI Chatbot",
-  "description": "Uses DuckDuckGo to provide free GPT-4o-mini.\n!!! pip install duckduckgo-search IS REQUIRED",
-  "developer_name": "Alexander Tarasov",
+  "name": "Quick Answers (DDG + AI)",
+  "description": "dd: DuckDuckGo instant answers. ai: free Groq AI answer on Enter.",
+  "developer_name": "you",
   "icon": "images/icon.png",
   "options": {
-    "query_debounce": 1
+    "query_debounce": 0.4
   },
   "preferences": [
     {
-      "id": "kw",
+      "id": "dd_kw",
       "type": "keyword",
-      "name": "Keyword",
-      "description": "Keyword to ask AI",
-      "default_value": "ddg"
+      "name": "Instant answer keyword",
+      "description": "DuckDuckGo Instant Answer, live as you type",
+      "default_value": "dd"
     },
     {
-      "id": "model",
-      "type": "select",
-      "name": "AI Model",
-      "description": "Select AI model to use",
-      "default_value": "gpt-4o-mini",
-      "options": ["gpt-4o-mini", "claude-3-haiku", "llama-3.1-70b", "mixtral-8x7b"]
+      "id": "ai_kw",
+      "type": "keyword",
+      "name": "AI keyword",
+      "description": "Groq AI answer, sent when you press Enter",
+      "default_value": "ai"
+    },
+    {
+      "id": "groq_key",
+      "type": "input",
+      "name": "Groq API key",
+      "description": "Free key from console.groq.com",
+      "default_value": ""
+    },
+    {
+      "id": "groq_model",
+      "type": "input",
+      "name": "Groq model",
+      "description": "Check console.groq.com for current free model names",
+      "default_value": "llama-3.1-8b-instant"
     },
     {
       "id": "default_prompt",
-      "type": "text",
-      "name": "Default Prompt",
-      "descriptions": "Text that will be appended to every query you make",
-      "default_value": ""
+      "type": "input",
+      "name": "System prompt",
+      "description": "Instruction sent with every AI question",
+      "default_value": "Answer briefly and directly, in at most 4 sentences."
     },
     {
       "id": "wrap_length",
       "type": "input",
-      "name": "Line Length",
-      "descriptions": "The maximum number of characters per line",
+      "name": "Line length",
+      "description": "Maximum characters per line",
       "default_value": "64"
     }
   ]
