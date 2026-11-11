@@ -34,7 +34,7 @@
       "type": "input",
       "name": "Groq model",
       "description": "Check console.groq.com for current free model names",
-      "default_value": "llama-3.1-8b-instant"
+      "default_value": "openai/gpt-oss-20b"
     },
     {
       "id": "default_prompt",
